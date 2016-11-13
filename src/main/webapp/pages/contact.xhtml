@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <style type="text/css">
+        .standardLabel {
+            display: block;
+            margin: 0 0 10px;
+        }
+    </style>
+
+    <p:outputPanel layout="block">
+        <h:outputText value="Kontakt!"
+                      style="display: block; font-size: 30px; margin-top: 20px; margin-bottom: 10px;"/>
+        <h:outputText
+                value="Masz jakieś pytania dotyczące rekrutacji? Chciałbyś dowiedzieć się czegoś o naszych zadaniach? A może znalazłeś błąd w portalu rekrutacyjnym?"
+                styleClass="standardLabel"/>
+        <h:outputText
+                value="W tych i innych sprawach związanych z rekrutacją kontaktuj się z nami e-mailowo, korzystając z adresu rekrutacja@ds.pg.gda.pl lub zajrzyj na któryś z naszych dyżurów. Ich listę możesz znaleźć tutaj."
+                styleClass="standardLabel"/>
+        <h:outputText
+                value="Siedzimy również na kanale IRC #skos na serwerze irc.ds.pg.gda.pl. Tak, jesteśmy aż tak starzy ;-). (niektórzy)"
+                styleClass="standardLabel"/>
+        <h:outputText value="Administratorzy SKOS PG" style="display: block; text-align: right;"/>
+    </p:outputPanel>
+
+    <p:outputPanel layout="block" styleClass="registrationPanel">
+
+    </p:outputPanel>
+</ui:composition>

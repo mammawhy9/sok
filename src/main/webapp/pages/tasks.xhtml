@@ -4,6 +4,31 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <h:outputText value="Witaj kandydacie!"/>
-    <h:outputText value="#{MainBean.user.name}"/>
+    <h2>
+        <h:outputText value="Cześć, #{MainBean.user.name}!"/>
+    </h2>
+
+    <p:outputPanel layout="block" style="margin-left: 40px;">
+        <h:outputText value="Fajnie, że tu trafiłeś :-). Dalsze kroki są proste:" style="display: block;"/>
+        <h:outputText value="Wybierz zadanie." style="display: list-item"/>
+        <h:outputText value="Podaj swoją odpowiedź." style="display: list-item"/>
+        <h:outputText value="Zapisz ją!" style="display: list-item"/>
+        <h:outputText value="Wróć do punktu 1." style="display: list-item"/>
+
+        <h:outputText value="Nie ma na co czekać... Powodzenia!" style="display: block; margin-top: 10px;"/>
+    </p:outputPanel>
+
+    <p:outputPanel layout="block" style="margin-top: 30px;">
+        <p:outputLabel for="tasks" value="Zadania: "/>
+        <p:selectOneMenu id="tasks" value="#{TaskBean.selectedTask}">
+            <f:selectItem itemLabel="Wybierz..." itemValue="#{null}"/>
+            <f:selectItems value="#{TaskBean.tasksSiList}"/>
+            <p:ajax event="itemSelect" update="taskPanel"/>
+        </p:selectOneMenu>
+    </p:outputPanel>
+
+    <p:outputPanel id="taskPanel" layout="block" style="margin-top: 30px;"
+                   rendered="#{not empty TaskBean.selectedTask}">
+        <h:outputText value="#{TaskBean.selectedTaskValue.title}"/>
+    </p:outputPanel>
 </ui:composition>

@@ -28,6 +28,18 @@ public class MainBean implements Serializable {
         }
     }
 
+    public void goToMainPage() {
+        if (this.user != null) {
+            this.currentPage = Page.TASK_LIST;
+        } else {
+            this.currentPage = Page.REGISTER;
+        }
+    }
+
+    public void goToContactPage() {
+        this.currentPage = Page.CONTACT;
+    }
+
     public Page getCurrentPage() {
         return currentPage;
     }

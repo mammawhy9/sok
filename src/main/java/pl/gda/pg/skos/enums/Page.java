@@ -2,7 +2,8 @@ package pl.gda.pg.skos.enums;
 
 public enum Page {
     REGISTER("pages/register.xhtml"),
-    TASK_LIST("pages/tasks.xhtml");
+    TASK_LIST("pages/tasks.xhtml"),
+    CONTACT("pages/contact.xhtml");
 
     private String url;
 

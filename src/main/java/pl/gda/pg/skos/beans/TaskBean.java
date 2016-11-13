@@ -17,6 +17,7 @@ public class TaskBean implements Serializable {
     private static final long serialVersionUID = 6388325946836580733L;
     private List<Task> tasks;
     private List<SelectItem> tasksSiList;
+    private SelectItem selectedTask;
 
     public List<Task> getTasks() {
         if (this.tasks == null) {
@@ -28,7 +29,22 @@ public class TaskBean implements Serializable {
     public List<SelectItem> getTasksSiList() {
         if (this.tasksSiList == null) {
             tasksSiList = new ArrayList<>();
+            for (Task task : getTasks()) {
+                tasksSiList.add(new SelectItem(task, task.getTitle() + " Trudność: " + task.getDifficulty()));
+            }
         }
         return this.tasksSiList;
+    }
+
+    public SelectItem getSelectedTask() {
+        return selectedTask;
+    }
+
+    public void setSelectedTask(SelectItem selectedTask) {
+        this.selectedTask = selectedTask;
+    }
+
+    public String getSelectedTaskValue() {
+        return this.selectedTask.getValue().getClass().getName();
     }
 }

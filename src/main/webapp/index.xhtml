@@ -8,17 +8,45 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <title>System Odsiewania Kandydatów</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
 </h:head>
 <h:body>
-    <p:outputPanel id="menuPanel" layout="block">
-        <h:outputText value="System odsiewania kandydatów - dev"/>
+    <p:outputPanel id="menuPanel" layout="block" styleClass="menuPanel">
+        <h:outputText value="System odsiewania kandydatów - dev"
+                      style="display: block; margin-left: 20%; margin-top: 10px; float:left;"/>
+
+        <p:outputPanel layout="block" style="margin-right: 20%; float: right; margin-top: 10px;">
+            <p:commandLink update="contentPanel" action="#{MainBean.goToMainPage}" styleClass="mainPageButton" style="font-size: 20px; vertical-align: middle;">
+                <h:outputText value="Strona główna"/>
+            </p:commandLink>
+            <p:commandLink update="contentPanel" action="#{MainBean.goToContactPage}" styleClass="mainPageButton" style="font-size: 20px; vertical-align: middle;">
+                <h:outputText value="Kontakt"/>
+            </p:commandLink>
+        </p:outputPanel>
     </p:outputPanel>
 
-    <p:outputPanel id="contentPanel" layout="block">
+    <p:outputPanel id="contentPanel" layout="block" styleClass="contentPanel">
         <h:form>
             <ui:include src="#{MainBean.currentPage.url}"/>
         </h:form>
+    </p:outputPanel>
+
+    <p:outputPanel id="footerPanel" layout="block" styleClass="footerPanel" style="background-color: white;">
+        <p:outputPanel layout="block" style="float: left; margin-left: 20%;">
+            <p:commandLink action="http://pg.edu.pl/skos">
+                <p:graphicImage height="90" width="80" value="img/skoslogo.svg"/>
+            </p:commandLink>
+        </p:outputPanel>
+
+        <p:outputPanel layout="block" style="float: right; margin-right: 20%; margin-top: 30px;">
+            <p:commandLink action="https://github.com/skos/sok" style="display: block; float: left;">
+                <p:graphicImage height="32" width="32" value="img/github.png"/>
+            </p:commandLink>
+            <h:outputText value="© SKOS PG 2015"
+                          style="display: block; float: right; margin-left: 10px; margin-top: 5px;"/>
+        </p:outputPanel>
     </p:outputPanel>
 </h:body>
 </html>

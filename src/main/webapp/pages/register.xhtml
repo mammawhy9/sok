@@ -3,7 +3,26 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
+    <style type="text/css">
+        .greetingPanel {
+            float: left;
+        }
 
-    <h:outputText value="Test include"/>
-    <h:outputText value="#{MainBean.token}"/>
+        .registrationPanel {
+            float: right;
+        }
+    </style>
+
+    <p:outputPanel layout="block" styleClass="greetingPanel">
+        <h:outputText value="Witaj, kandydacie na administratora!"
+                      style="display: block; font-size: 30px; margin-top: 20px; margin-bottom: 10px;"/>
+        <h:outputText value="Chcesz zmierzyć się z naszymi zadaniami? Zarejestruj się i pokaż nam, co potrafisz!"
+                      style="display: block; margin: 0 0 10px;"/>
+        <h:outputText value="Na swój adres e-mail otrzymasz link do formularza pozwalającego wziąć udział w rekrutacji."
+                      style="display: block; margin: 0 0 10px;"/>
+    </p:outputPanel>
+
+    <p:outputPanel layout="block" styleClass="registrationPanel">
+
+    </p:outputPanel>
 </ui:composition>
