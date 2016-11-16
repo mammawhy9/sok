@@ -18,19 +18,19 @@
                       style="display: block; margin-left: 20%; margin-top: 10px; float:left;"/>
 
         <p:outputPanel layout="block" style="margin-right: 20%; float: right; margin-top: 10px;">
-            <p:commandLink update="contentPanel" action="#{MainBean.goToMainPage}" styleClass="mainPageButton" style="font-size: 20px; vertical-align: middle;">
+            <p:commandLink update="contentPanel" action="#{MainBean.goToMainPage}" styleClass="mainPageButton"
+                           style="font-size: 20px; vertical-align: middle;">
                 <h:outputText value="Strona główna"/>
             </p:commandLink>
-            <p:commandLink update="contentPanel" action="#{MainBean.goToContactPage}" styleClass="mainPageButton" style="font-size: 20px; vertical-align: middle;">
+            <p:commandLink update="contentPanel" action="#{MainBean.goToContactPage}" styleClass="mainPageButton"
+                           style="font-size: 20px; vertical-align: middle;">
                 <h:outputText value="Kontakt"/>
             </p:commandLink>
         </p:outputPanel>
     </p:outputPanel>
 
     <p:outputPanel id="contentPanel" layout="block" styleClass="contentPanel">
-        <h:form>
-            <ui:include src="#{MainBean.currentPage.url}"/>
-        </h:form>
+        <ui:include src="#{MainBean.currentPage.url}"/>
     </p:outputPanel>
 
     <p:outputPanel id="footerPanel" layout="block" styleClass="footerPanel" style="background-color: white;">

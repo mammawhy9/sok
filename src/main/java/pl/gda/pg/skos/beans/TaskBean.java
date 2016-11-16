@@ -17,7 +17,8 @@ public class TaskBean implements Serializable {
     private static final long serialVersionUID = 6388325946836580733L;
     private List<Task> tasks;
     private List<SelectItem> tasksSiList;
-    private SelectItem selectedTask;
+    private Long selectedTaskId;
+    private Task selectedTask;
 
     public List<Task> getTasks() {
         if (this.tasks == null) {
@@ -28,23 +29,38 @@ public class TaskBean implements Serializable {
 
     public List<SelectItem> getTasksSiList() {
         if (this.tasksSiList == null) {
-            tasksSiList = new ArrayList<>();
+            this.tasksSiList = new ArrayList<>();
             for (Task task : getTasks()) {
-                tasksSiList.add(new SelectItem(task, task.getTitle() + " Trudność: " + task.getDifficulty()));
+                tasksSiList.add(new SelectItem(task.getId(), task.getTitle() + " Trudność: " + task.getDifficulty()));
             }
         }
         return this.tasksSiList;
     }
 
-    public SelectItem getSelectedTask() {
+    public Long getSelectedTaskId() {
+        return this.selectedTaskId;
+    }
+
+    public void setSelectedTaskId(Long selectedTaskId) {
+        this.selectedTaskId = selectedTaskId;
+    }
+
+    public Task getSelectedTask() {
         return selectedTask;
     }
 
-    public void setSelectedTask(SelectItem selectedTask) {
+    public void setSelectedTask(Task selectedTask) {
         this.selectedTask = selectedTask;
     }
 
-    public String getSelectedTaskValue() {
-        return this.selectedTask.getValue().getClass().getName();
+    public void onSelectedTaskChange() {
+        if (getSelectedTaskId() != null) {
+            for (Task task : tasks) {
+                if (task.getId().equals(getSelectedTaskId())) {
+                    setSelectedTask(task);
+                    break;
+                }
+            }
+        }
     }
 }

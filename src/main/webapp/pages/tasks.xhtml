@@ -18,17 +18,21 @@
         <h:outputText value="Nie ma na co czekać... Powodzenia!" style="display: block; margin-top: 10px;"/>
     </p:outputPanel>
 
-    <p:outputPanel layout="block" style="margin-top: 30px;">
-        <p:outputLabel for="tasks" value="Zadania: "/>
-        <p:selectOneMenu id="tasks" value="#{TaskBean.selectedTask}">
-            <f:selectItem itemLabel="Wybierz..." itemValue="#{null}"/>
-            <f:selectItems value="#{TaskBean.tasksSiList}"/>
-            <p:ajax event="itemSelect" update="taskPanel"/>
-        </p:selectOneMenu>
-    </p:outputPanel>
+    <h:form>
+        <p:outputPanel layout="block" style="margin-top: 30px;">
+            <p:outputLabel for="tasks" value="Zadania: "/>
+            <p:selectOneMenu id="tasks" value="#{TaskBean.selectedTaskId}">
+                <f:selectItem itemLabel="Wybierz..." itemValue="#{null}"/>
+                <f:selectItems value="#{TaskBean.tasksSiList}"/>
+                <p:ajax listener="#{TaskBean.onSelectedTaskChange}" update="tasksPanel"/>
+            </p:selectOneMenu>
+        </p:outputPanel>
 
-    <p:outputPanel id="taskPanel" layout="block" style="margin-top: 30px;"
-                   rendered="#{not empty TaskBean.selectedTask}">
-        <h:outputText value="#{TaskBean.selectedTaskValue.title}"/>
-    </p:outputPanel>
+        <h:panelGroup id="tasksPanel">
+            <h:outputText value="testestse"/>
+            <h:panelGroup layout="block" rendered="#{not empty TaskBean.selectedTaskId}">
+                <h:outputText value="#{TaskBean.selectedTask.title}"/>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:form>
 </ui:composition>
