@@ -36,10 +36,19 @@ public class BackendUtils implements Serializable {
             String url = BACKEND_ADDRESS + "/tasks";
             Document data = Jsoup.connect(url).ignoreContentType(true).get();
             String json = data.select("body").text();
-            tasks = gson.fromJson(json, new TypeToken<List<Task>>(){}.getType());
+            tasks = gson.fromJson(json, new TypeToken<List<Task>>() {
+            }.getType());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return tasks;
+    }
+
+    public static void saveAnswer(String answer) {
+        try {
+            Jsoup.connect(BACKEND_ADDRESS + "/answer").requestBody(answer).header("Content-Type", "application/json").post();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

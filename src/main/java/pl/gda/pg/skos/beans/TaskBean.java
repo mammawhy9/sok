@@ -1,9 +1,12 @@
 package pl.gda.pg.skos.beans;
 
+import com.google.gson.Gson;
+import pl.gda.pg.skos.entities.Answer;
 import pl.gda.pg.skos.entities.Task;
 import pl.gda.pg.skos.utils.BackendUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
@@ -15,10 +18,14 @@ import java.util.List;
 public class TaskBean implements Serializable {
 
     private static final long serialVersionUID = 6388325946836580733L;
+    @ManagedProperty(value = "#{MainBean}")
+    private MainBean mainBean;
     private List<Task> tasks;
     private List<SelectItem> tasksSiList;
     private Long selectedTaskId;
     private Task selectedTask;
+    private Answer answer;
+    private Gson gson = new Gson();
 
     public List<Task> getTasks() {
         if (this.tasks == null) {
@@ -37,6 +44,28 @@ public class TaskBean implements Serializable {
         return this.tasksSiList;
     }
 
+    public void onSelectedTaskChange() {
+        if (getSelectedTaskId() != null) {
+            for (Task task : tasks) {
+                if (task.getId().equals(getSelectedTaskId())) {
+                    setSelectedTask(task);
+                    break;
+                }
+            }
+            setAnswer(new Answer(getSelectedTask().getId()));
+        }
+
+    }
+
+    public void saveTask() {
+        if (getSelectedTask() != null) {
+            getAnswer().setToken(getMainBean().getToken());
+            String json = gson.toJson(getAnswer());
+            BackendUtils.saveAnswer(json);
+        }
+    }
+
+    //////////// GETTERY I SETTERY
     public Long getSelectedTaskId() {
         return this.selectedTaskId;
     }
@@ -53,14 +82,19 @@ public class TaskBean implements Serializable {
         this.selectedTask = selectedTask;
     }
 
-    public void onSelectedTaskChange() {
-        if (getSelectedTaskId() != null) {
-            for (Task task : tasks) {
-                if (task.getId().equals(getSelectedTaskId())) {
-                    setSelectedTask(task);
-                    break;
-                }
-            }
-        }
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public MainBean getMainBean() {
+        return mainBean;
+    }
+
+    public void setMainBean(MainBean mainBean) {
+        this.mainBean = mainBean;
     }
 }

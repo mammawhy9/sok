@@ -21,18 +21,23 @@
     <h:form>
         <p:outputPanel layout="block" style="margin-top: 30px;">
             <p:outputLabel for="tasks" value="Zadania: "/>
-            <p:selectOneMenu id="tasks" value="#{TaskBean.selectedTaskId}">
+            <p:selectOneMenu id="tasks" value="#{TaskBean.selectedTaskId}" style="width: 300px;">
                 <f:selectItem itemLabel="Wybierz..." itemValue="#{null}"/>
                 <f:selectItems value="#{TaskBean.tasksSiList}"/>
                 <p:ajax listener="#{TaskBean.onSelectedTaskChange}" update="tasksPanel"/>
             </p:selectOneMenu>
         </p:outputPanel>
 
-        <h:panelGroup id="tasksPanel">
-            <h:outputText value="testestse"/>
+        <h:panelGroup id="tasksPanel" style="margin-top: 20px;">
             <h:panelGroup layout="block" rendered="#{not empty TaskBean.selectedTaskId}">
-                <h:outputText value="#{TaskBean.selectedTask.title}"/>
+                <h:outputText value="#{TaskBean.selectedTask.content}"/>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="margin-top: 20px;">
+                <p:inputTextarea rows="5" cols="50" value="#{TaskBean.answer.content}"/>
             </h:panelGroup>
         </h:panelGroup>
+
+        <p:commandButton actionListener="#{TaskBean.saveTask}" value="Zapisz" icon="ui-icon-star"/>
     </h:form>
 </ui:composition>

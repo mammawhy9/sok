@@ -6,18 +6,18 @@ public class Task implements Serializable {
 
     private static final long serialVersionUID = -8201134351032179674L;
 
-    private java.lang.Long id;
+    private Long id;
     private String title;
     private String type;
     private String content;
     private Integer difficulty;
     private Candidate candidate;
 
-    public java.lang.Long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(java.lang.Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
